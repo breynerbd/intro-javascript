@@ -8,3 +8,5 @@ CONTENIDO
  
 	Elementos de estructura
 	Operadores: comparación, lógica, control
+
+	1) Instalar Node.js
