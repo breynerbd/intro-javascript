@@ -32,11 +32,12 @@ console.log(resultado.toFixed == 0.3)
 //Operaciones Avanzadas
 const raizCuadrada = Math.sqrt(16)
 const valorAbsoluto = Math.abs(-7)
-const aleatorio = Math.random
+const aleatorio = Math.random()
+let numero = aleatorio * 10+1
 
 console.log(raizCuadrada)
 console.log(valorAbsoluto)
-console.log(aleatorio)
+console.log(Math.trunc(numero))
 
 //ejemplo
 const numero2 = 2
