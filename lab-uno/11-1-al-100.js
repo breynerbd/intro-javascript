@@ -4,6 +4,9 @@
     consola.
  */
 
-for (let i = 1; i <= 100; i++) {
-    console.log(i);
+function unoCien(){
+    console.log("-----------------------------------------------------------")
+    for (let i = 1; i <= 100; i++) {
+        console.log(i);
+    }
 }

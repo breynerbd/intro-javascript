@@ -1,0 +1,4 @@
+Elaboración
+    Ejercicios de la hoja de trabajo para el Laboratorio #1.
+    Proyecto De JavaScript
+    Primera parte en clase y segunda parte en casa.
