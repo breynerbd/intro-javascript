@@ -91,6 +91,74 @@
 
 ---
 
+# 📱 KinRural Customer API (Auth: User)
+**Base URL:** `http://localhost:3006/kinrural/v1/user`
+
+---
+
+## 👤 Perfil de Usuario
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/` | Obtener el perfil del usuario autenticado | User |
+| **PUT** | `/` | Actualizar información del perfil | User |
+
+---
+
+## 💰 Mis Cuentas
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/accounts` | Listar todas mis cuentas bancarias | User |
+
+---
+
+## 📩 Solicitudes de Cuenta (Account Requests)
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/account-requests` | Solicitar apertura de una nueva cuenta | User |
+| **GET** | `/account-requests` | Ver el estado de mis solicitudes | User |
+
+---
+
+## 👥 Beneficiarios
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/beneficiaries` | Registrar un nuevo beneficiario | User |
+| **GET** | `/beneficiaries` | Listar mis beneficiarios registrados | User |
+| **PUT** | `/beneficiaries/:id` | Actualizar datos de un beneficiario | User |
+| **DELETE** | `/beneficiaries/:id` | Eliminar un beneficiario | User |
+
+---
+
+## 💳 Mis Tarjetas
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/cards` | Solicitar una nueva tarjeta | User |
+| **GET** | `/cards` | Listar mis tarjetas actuales | User |
+
+---
+
+## 📝 Préstamos (Loans)
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/loans/quote` | Cotizar un préstamo (simulación) | User |
+| **POST** | `/loans/request` | Solicitar un préstamo formalmente | User |
+| **GET** | `/loans/user/:user_id` | Ver historial de mis préstamos | User |
+
+---
+
+## 💸 Transacciones y Movimientos
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/transactions` | Crear una nueva transferencia/pago | User |
+| **GET** | `/movements` | Ver mi historial de movimientos | User |
+
+---
+
+## 📄 Estados de Cuenta
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/statements` | Consultar mis estados de cuenta mensuales | User |
+
 ## ⚙️ Procesos Lógicos del Sistema
 
 El sistema implementa las siguientes reglas de negocio automatizadas:
