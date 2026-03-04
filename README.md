@@ -1,9 +1,3 @@
-# 🏦 KinRural API Documentation
-
-Documentación de los endpoints para el sistema bancario KinRural.
-
-**Base URL:** `http://localhost:3005/kinrural/v1`
-
 ---
 
 # 🏦 KinRural API Documentation
