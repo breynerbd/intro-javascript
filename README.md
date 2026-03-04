@@ -45,9 +45,9 @@
 ## 💸 Transacciones
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/transactions` | Realizar transferencia entre cuentas | User |
+| **POST** | `/transactions` | Realizar transferencia entre cuentas | Admin |
 | **GET** | `/transactions` | Listar historial de transacciones | Admin |
-| **GET** | `/transactions/:id` | Transacciones de una cuenta específica | User |
+| **GET** | `/transactions/:id` | Transacciones de una cuenta específica | Admin |
 
 ---
 
@@ -56,7 +56,7 @@
 | :--- | :--- | :--- | :--- |
 | **POST** | `/movements` | Crear registro de movimiento manual | Admin |
 | **GET** | `/movements` | Listar todos los movimientos | Admin |
-| **GET** | `/movements/:account_id` | Movimientos de una cuenta específica | User |
+| **GET** | `/movements/:account_id` | Movimientos de una cuenta específica | Admin |
 
 ---
 
@@ -64,10 +64,10 @@
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
 | **GET** | `/cards` | Listar todas las tarjetas | Admin |
-| **GET** | `/cards/:id` | Ver tarjetas de una cuenta (:id cuenta) | User |
+| **GET** | `/cards/:id` | Ver tarjetas de una cuenta (:id cuenta) | Admin |
 | **POST** | `/cards/:id` | Aprobar/Rechazar tarjeta (:id tarjeta) | Admin |
-| **POST** | `/cards/:id/activate` | Activar tarjeta aprobada | User |
-| **POST** | `/cards/:id/block` | Bloquear tarjeta | User |
+| **POST** | `/cards/:id/activate` | Activar tarjeta aprobada | Admin |
+| **POST** | `/cards/:id/block` | Bloquear tarjeta | Admin |
 
 ---
 
@@ -78,7 +78,7 @@
 | **GET** | `/loans/:id` | Detalle de préstamo y sus cuotas | Admin |
 | **PUT** | `/loans/approve/:id` | Aprobar préstamo y desembolsar | Admin |
 | **PUT** | `/loans/reject/:id` | Rechazar solicitud de préstamo | Admin |
-| **PUT** | `/loans/pay/:installment_id` | Pagar cuota de préstamo | User |
+| **PUT** | `/loans/pay/:installment_id` | Pagar cuota de préstamo | Admin |
 | **POST** | `/loans/check-mora` | Proceso manual de revisión de mora | Admin |
 
 ---
