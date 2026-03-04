@@ -1,163 +1,119 @@
 # 🏦 KinRural API Documentation
+
+Este proyecto se divide en dos microservicios o paneles de control: **Administrativo (Port 3005)** y **Cliente (Port 3006)**.
+
+---
+
+## 🛠️ Panel Administrativo (Admin API)
 **Base URL:** `http://localhost:3005/kinrural/v1`
 
----
-
-## 🔐 Roles
+### 👥 Usuarios
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/roles` | Crear un nuevo rol | Admin |
-| **GET** | `/roles` | Listar todos los roles | Admin |
-| **DELETE** | `/roles/:id` | Eliminar un rol | Admin |
+| **POST** | `/users` | Registrar un nuevo usuario (Valida ingresos > Q100) | Admin |
+| **GET** | `/users` | Listar todos los usuarios del sistema | Admin |
+| **GET** | `/users/:id` | Obtener detalles de un usuario por ID | Admin |
+| **PUT** | `/users/:id` | Actualizar información de usuario | Admin |
+| **DELETE** | `/users/:id` | Eliminar un usuario del sistema | Admin |
 
----
-
-## 👥 Usuarios
+### 🔐 Roles
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/users` | Registrar un nuevo usuario | Admin |
-| **GET** | `/users` | Listar todos los usuarios | Admin |
-| **GET** | `/users/:id` | Obtener usuario por ID | Admin |
-| **PUT** | `/users/:id` | Actualizar datos de usuario | Admin |
-| **DELETE** | `/users/:id` | Eliminar un usuario | Admin |
+| **POST** | `/roles` | Crear un nuevo rol de sistema | Admin |
+| **GET** | `/roles` | Listar todos los roles disponibles | Admin |
+| **DELETE** | `/roles/:id` | Eliminar un rol existente | Admin |
 
----
-
-## 💰 Cuentas (Accounts)
+### 💰 Cuentas (Accounts)
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/accounts` | Crear cuenta manualmente | Admin |
-| **GET** | `/accounts` | Listar todas las cuentas | Admin |
-| **GET** | `/accounts/:id` | Obtener cuenta por ID | Admin |
-| **DELETE** | `/accounts/:id` | Eliminar una cuenta | Admin |
+| **POST** | `/accounts` | Crear una cuenta manualmente | Admin |
+| **GET** | `/accounts` | Listar todas las cuentas bancarias | Admin |
+| **GET** | `/accounts/:id` | Obtener detalles de una cuenta por ID | Admin |
+| **DELETE** | `/accounts/:id` | Eliminar una cuenta permanentemente | Admin |
 
----
-
-## 📩 Solicitudes de Cuenta (Account Requests)
+### 📩 Solicitudes de Cuenta (Account Requests)
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **GET** | `/account-requests` | Listar solicitudes de apertura | Admin |
-| **PATCH** | `/account-requests/:id/approve` | Aprobar solicitud de cuenta | Admin |
-| **PATCH** | `/account-requests/:id/reject` | Rechazar solicitud de cuenta | Admin |
+| **GET** | `/account-requests` | Listar todas las solicitudes de apertura | Admin |
+| **PATCH** | `/account-requests/:id/approve` | Aprobar solicitud (Valida límites de cuenta) | Admin |
+| **PATCH** | `/account-requests/:id/reject` | Rechazar solicitud de apertura | Admin |
 
----
-
-## 💸 Transacciones
+### 📝 Préstamos (Loans)
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/transactions` | Realizar transferencia entre cuentas | Admin |
-| **GET** | `/transactions` | Listar historial de transacciones | Admin |
-| **GET** | `/transactions/:id` | Transacciones de una cuenta específica | Admin |
-
----
-
-## 📊 Movimientos (Movements)
-| Método | Endpoint | Descripción | Auth |
-| :--- | :--- | :--- | :--- |
-| **POST** | `/movements` | Crear registro de movimiento manual | Admin |
-| **GET** | `/movements` | Listar todos los movimientos | Admin |
-| **GET** | `/movements/:account_id` | Movimientos de una cuenta específica | Admin |
-
----
-
-## 💳 Tarjetas (Cards)
-| Método | Endpoint | Descripción | Auth |
-| :--- | :--- | :--- | :--- |
-| **GET** | `/cards` | Listar todas las tarjetas | Admin |
-| **GET** | `/cards/:id` | Ver tarjetas de una cuenta (:id cuenta) | Admin |
-| **POST** | `/cards/:id` | Aprobar/Rechazar tarjeta (:id tarjeta) | Admin |
-| **POST** | `/cards/:id/activate` | Activar tarjeta aprobada | Admin |
-| **POST** | `/cards/:id/block` | Bloquear tarjeta | Admin |
-
----
-
-## 📝 Préstamos (Loans)
-| Método | Endpoint | Descripción | Auth |
-| :--- | :--- | :--- | :--- |
-| **GET** | `/loans` | Listar todos los préstamos | Admin |
-| **GET** | `/loans/:id` | Detalle de préstamo y sus cuotas | Admin |
-| **PUT** | `/loans/approve/:id` | Aprobar préstamo y desembolsar | Admin |
+| **GET** | `/loans` | Listar todos los préstamos globales | Admin |
+| **GET** | `/loans/:id` | Ver detalle de préstamo y tabla de amortización | Admin |
+| **PUT** | `/loans/approve/:id` | Aprobar préstamo y desembolsar fondos | Admin |
 | **PUT** | `/loans/reject/:id` | Rechazar solicitud de préstamo | Admin |
-| **PUT** | `/loans/pay/:installment_id` | Pagar cuota de préstamo | Admin |
-| **POST** | `/loans/check-mora` | Proceso manual de revisión de mora | Admin |
+| **PUT** | `/loans/pay/:installment_id` | Registrar pago de una cuota | Admin |
+| **POST** | `/loans/check-mora` | Ejecutar revisión de cuotas atrasadas | Admin |
 
----
-
-## 🔄 Reversos (Reversals)
+### 💳 Tarjetas (Cards)
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/reversals` | Crear un registro de reverso | Admin |
-| **GET** | `/reversals` | Listar bitácora de reversos | Admin |
+| **GET** | `/cards` | Listar todas las tarjetas registradas | Admin |
+| **GET** | `/cards/:id` | Ver tarjetas por ID de cuenta | Admin |
+| **POST** | `/cards/:id` | Decidir sobre solicitud (Aprobar/Rechazar) | Admin |
+| **POST** | `/cards/:id/activate` | Activar una tarjeta aprobada | Admin |
+| **POST** | `/cards/:id/block` | Bloquear tarjeta por seguridad | Admin |
+
+### 💸 Transacciones y Movimientos
+| Método | Endpoint | Descripción | Auth |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/transactions` | Historial global de transacciones | Admin |
+| **POST** | `/transactions` | Realizar transferencia administrativa | Admin |
+| **GET** | `/transactions/:id` | Transacciones de una cuenta específica | Admin |
+| **GET** | `/movements` | Listar todos los movimientos contables | Admin |
+| **GET** | `/movements/:account_id` | Movimientos por cuenta específica | Admin |
 
 ---
 
-# 📱 KinRural Customer API (Auth: User)
+## 📱 Panel de Cliente (User API)
 **Base URL:** `http://localhost:3006/kinrural/v1/user`
 
----
-
-## 👤 Perfil de Usuario
+### 👤 Perfil de Usuario
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **GET** | `/` | Obtener el perfil del usuario autenticado | User |
-| **PUT** | `/` | Actualizar información del perfil | User |
+| **GET** | `/users` | Obtener mi información de perfil | User |
+| **PUT** | `/users` | Actualizar mis datos personales | User |
 
----
-
-## 💰 Mis Cuentas
+### 💰 Mis Cuentas
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **GET** | `/accounts` | Listar todas mis cuentas bancarias | User |
+| **GET** | `/accounts` | Consultar mis cuentas bancarias propias | User |
 
----
-
-## 📩 Solicitudes de Cuenta (Account Requests)
+### 📩 Mis Solicitudes
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/account-requests` | Solicitar apertura de una nueva cuenta | User |
-| **GET** | `/account-requests` | Ver el estado de mis solicitudes | User |
+| **GET** | `/account-requests` | Ver el estado de mis solicitudes de cuenta | User |
+| **POST** | `/account-requests` | Solicitar la apertura de una nueva cuenta | User |
 
----
-
-## 👥 Beneficiarios
+### 👥 Beneficiarios
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/beneficiaries` | Registrar un nuevo beneficiario | User |
+| **POST** | `/beneficiaries` | Registrar un nuevo beneficiario para transferencias | User |
 | **GET** | `/beneficiaries` | Listar mis beneficiarios registrados | User |
-| **PUT** | `/beneficiaries/:id` | Actualizar datos de un beneficiario | User |
-| **DELETE** | `/beneficiaries/:id` | Eliminar un beneficiario | User |
+| **PUT** | `/beneficiaries/:id` | Editar datos de un beneficiario | User |
+| **DELETE** | `/beneficiaries/:id` | Eliminar a un beneficiario | User |
 
----
-
-## 💳 Mis Tarjetas
+### 💳 Mis Tarjetas
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/cards` | Solicitar una nueva tarjeta | User |
-| **GET** | `/cards` | Listar mis tarjetas actuales | User |
+| **POST** | `/cards` | Solicitar una tarjeta de crédito o débito | User |
+| **GET** | `/cards` | Ver mis tarjetas activas y sus estados | User |
 
----
-
-## 📝 Préstamos (Loans)
+### 📝 Mis Préstamos
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/loans/quote` | Cotizar un préstamo (simulación) | User |
-| **POST** | `/loans/request` | Solicitar un préstamo formalmente | User |
+| **POST** | `/loans/quote` | Cotizar/Simular un préstamo | User |
+| **POST** | `/loans/request` | Enviar solicitud formal de préstamo | User |
 | **GET** | `/loans/user/:user_id` | Ver historial de mis préstamos | User |
 
----
-
-## 💸 Transacciones y Movimientos
+### 💸 Mis Transacciones
 | Método | Endpoint | Descripción | Auth |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/transactions` | Crear una nueva transferencia/pago | User |
-| **GET** | `/movements` | Ver mi historial de movimientos | User |
-
----
-
-## 📄 Estados de Cuenta
-| Método | Endpoint | Descripción | Auth |
-| :--- | :--- | :--- | :--- |
-| **GET** | `/statements` | Consultar mis estados de cuenta mensuales | User |
+| **POST** | `/transactions` | Realizar una transferencia a terceros | User |
+| **GET** | `/movements` | Ver mi historial de movimientos bancarios | User |
 
 ## ⚙️ Procesos Lógicos del Sistema
 
