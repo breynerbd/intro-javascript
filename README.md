@@ -1,5 +1,3 @@
----
-
 # 🏦 KinRural API Documentation
 **Base URL:** `http://localhost:3005/kinrural/v1`
 
