@@ -151,10 +151,9 @@ El frontend estará disponible en `http://localhost:5173`
 5. **Comentar** - Dejar opiniones en las publicaciones
 6. **Editar/Eliminar** - Gestionar propias publicaciones y comentarios
 
-### Endpoints Disponibles
-URL Base en `http://localhost:3006/blogKinal/v1`
-
 ## 🚀 API Endpoints
+
+URL Base en `http://localhost:3006/blogKinal/v1`
 
 ### 🔐 Autenticación
 | Método | Endpoint | Descripción | Auth |
